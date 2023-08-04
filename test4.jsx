@@ -33,7 +33,7 @@ var statText3 = textGroup2.add("statictext", undefined, "Do you want it 3D?");
 var checkbox1 = textGroup2.add("checkbox", undefined, "");
 
 // static text
-var statText4 = myWindow.add("statictext", undefined, "Is everything correct?");
+var statText4 = myWindow.add("statictext", undefined, "Is that so?");
 
 // Create a button to submit the numeric input and create text input fields
 var submitButton = myWindow.add("button", undefined, "Yepp!");
@@ -113,6 +113,21 @@ submitButton2.onClick = function() {
     var numGroups = textFields.length;
     var comp = app.project.activeItem;
     if (comp && comp instanceof CompItem) {
+
+                var myEllipseSize2 = [600,600];
+            var myFillColor2 = [1.0, 1.0, 0.5];
+        
+            var myShapeLayer2 = comp.layers.addShape();
+            var myShapeLayerContents2 = myShapeLayer2.property("ADBE Root Vectors Group");
+            var myShapeGroup2 = myShapeLayerContents2.addProperty("ADBE Vector Group");
+            var myEllipse2 = myShapeGroup2.property("ADBE Vectors Group").addProperty("ADBE Vector Shape - Ellipse");
+            myEllipse2.property("ADBE Vector Ellipse Size").setValue(myEllipseSize2);
+            var myShapeFill2 = myShapeGroup2.property("ADBE Vectors Group").addProperty("ADBE Vector Graphic - Fill");
+            myShapeFill2.property("ADBE Vector Fill Color").setValue(myFillColor2);
+            var myTrim2 = myShapeLayerContents2.addproperty("ADBE Vector Filter - Trim");
+            myTrim2.property("ADBE Vector Trim Start").setValue("40");
+        
+
         for (var i = 0; i < numGroups; i++) {
             var nameValue = textFields[i].text;
             var opacityValue = Number(numberFields[i].text);
@@ -135,6 +150,10 @@ submitButton2.onClick = function() {
             myShapeLayer.name = nameValue;
             myShapeLayer.opacity.setValue(opacityValue); // Set the opacity value as a fraction between 0 and 1
         }
+
+
+
+
     } else {
         alert("Please select a composition in After Effects before running this script.");
     }
