@@ -62,7 +62,7 @@ submitButton.onClick = function() {
             myTrim.end.expression = myTrimEnd;
             // is 3D
             myShapeLayer.threeDLayer = is3D;
-
+            alert("this is running");
             
     } else {
         alert("Please select a composition in After Effects before running this script.");
@@ -71,5 +71,8 @@ submitButton.onClick = function() {
 
 
 
+
 // Show the window
 myWindow.show();
+
+
