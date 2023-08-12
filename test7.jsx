@@ -9,6 +9,17 @@ var pieName = myWindow.add("edittext", undefined, "", {
     justify: "center",
 });
 pieName.characters = 20;
+var statText01 = myWindow.add("statictext", undefined, "What is the size of the pie?");
+// Create a number only input field
+
+var sizeNumInput = myWindow.add("edittext", undefined, "", {
+    multiline: false,
+    enterKeySignalsOnChange: true,
+    justify: "center",
+    numericOnly: true, // Only allows numeric input
+});
+
+sizeNumInput.characters = 4;
 var statText1 = myWindow.add("statictext", undefined, "How many slices do you need?");
 var textGroup1 = myWindow.add("group", undefined, "");
 textGroup1.orientation = "row";
@@ -40,8 +51,6 @@ textInputPanel.orientation = "row";
 //these are needed for every input you want to add with a click
 var sliceNames = [];
 var slicePercentages = [];
-var sliceColor1s = [];
-var sliceColor2s = [];
 
 // Define the button click event handler for the Submit button
 submitButton.onClick = function() {
@@ -68,9 +77,6 @@ function createTextInputFields(count) {
     var slicePercentagePanel = textInputPanel.add("panel", undefined, "percentage");
     slicePercentagePanel.orientation = "column";
 
-    var sliceColor1Panel = textInputPanel.add("panel", undefined, "color");
-    sliceColor1Panel.orientation = "column";
-
     for (var i = 0; i < count; i++) {
 
             //add as manz sliceNames as many input value
@@ -91,13 +97,6 @@ function createTextInputFields(count) {
         slicePercentage.characters = 5; // Set the maximum number of characters for each input field
         slicePercentages.push(slicePercentage);
 
-        var sliceColor1 = sliceColor1Panel.add("edittext", undefined, "", {
-            multiline: false,
-            enterKeySignalsOnChange: true,
-            justify: "center"
-        });
-        sliceColor1.characters = 6; // Set the maximum number of characters for each input field
-        sliceColor1s.push(sliceColor1);
     }
     
 
@@ -108,47 +107,67 @@ function createTextInputFields(count) {
 
 
 
-// create! button
+// so let's create all those slices and controls
 var submitButton2 = myWindow.add("button", undefined, "Create!");
 
         submitButton2.onClick = function() {
-
-            
-
-            // temporary hard coded arrays
-            var numberField = ['"Null 1"', '"Null 2"', '"Null 3"', '"Null 4"'];
-            var sliderControl = sliceNames.text;
-
-            // Initialize an array starting with 0. This array will have one more length than your input
-            //todo Remember to rename myArray to something useful
-            var myArray = [0]; 
-            // the 0 th element exception
-            var previous = 'temp = thisComp.layer(' + numberField[0] + ').effect("'+ sliceNames[0].text +'")("Slider")';
-            //add the 0th elemenent to the previous array
-            myArray.push(previous);
-
-            var next = '';
-
+            // won't work if comp is not defined
             var comp = app.project.activeItem;
-            
-            for (var i = 0; i < sliceNumInput.text; i++) {
-                next = previous + ' + thisComp.layer(' + numberField[i] + ').effect("'+ sliceNames[i].text +'")("Slider")';
-                myArray.push(next);
-                previous = next;
-               
+
+            // hard coded null names, if ever improved add null names here
+            var cntrlNullName = [" - CNTRL - slices" , " - CNTRL - colors" , " - CNTRL - size & extrusion" , " - CNTRL - position & rotation"];
+            //updating the null names with the main pie name input
+            for (var k = 0; k < cntrlNullName.length; k++) {
+                cntrlNullName[k] = pieName.text + cntrlNullName[k];
+            };
+            // loop for creating the control nulls, and creating an array what can be later called when adding sliders to differnt nulls
+            var cntrlNullS = [];
+            for (var l = 0; l < cntrlNullName.length; l++) {
+                var cntrlNull = comp.layers.addNull();
+                cntrlNull.name = cntrlNullName[l];
+                cntrlNullS.push(cntrlNull);
+            };
+           
+            // ! putting the expression for the trim paths together with the inputs
+            // Initialize an array starting with 0. This array will have one more length than your input
+            var trimPathExpression = [0]; 
+            // the 0 th element exception
+            var previous = 'temp = thisComp.layer("' + cntrlNullName[0] + '").effect("'+ sliceNames[0].text +'")("Slider")';
+            //add the 0th elemenent to the previous array
+            trimPathExpression.push(previous);
+
+            var next = '';            
+            for (var i = 1; i < sliceNames.length; i++) {
+                next = previous + ' + thisComp.layer("' + cntrlNullName[0] + '").effect("'+ sliceNames[i].text +'")("Slider")';
+                trimPathExpression.push(next);
+                previous = next;               
             };
 
-
-
-            for (var j = 0; j < sliceNumInput.text; j++) {
+            // ! vars and maths for the size of the pie
+            var size = 'Size';
+            var effectsPropertySize = cntrlNullS[2].property("ADBE Effect Parade");
+            var sliderSize = effectsPropertySize.addProperty("ADBE Slider Control");
+            sliderSize.name = size;
+            // set slider value , and add expression which devides the input number by 2
+            sliderSize.slider.setValue(sizeNumInput.text);
+            sliderSize.slider.expression = 'effect("' + size + '")(1)/2';
+       
             
-                var myEllipseSize = 'temp = thisComp.layer("CNTRL size & extrusion").effect("Size")("Slider"); [temp, temp]';
-                var myStrokeSize = 'temp = thisComp.layer("CNTRL size & extrusion").effect("Size")("Slider")';
-                var myStrokeColor = [0,0,0.5];
-                var myTrimStart = myArray[j];
-                var myTrimEnd = myArray[j+1];
+            for (var j = 0; j < sliceNames.length; j++) {
+
+                var colorSelection = sliceNames[j].text + ' - color';
+                var colorSelectionSide = sliceNames[j].text + ' - sidecolor';
+                var sizeSelection = sliceNames[j].text + '-selection';
+                var colorValue = [Math.random(),Math.random(),Math.random()];
+                var myEllipseSize = 'temp = thisComp.layer("' + cntrlNullName[2] + '").effect("' + size + '")("Slider") + thisComp.layer("' + cntrlNullName[2] + '").effect("' + sizeSelection + '")("Slider"); [temp,temp]';
+                var myStrokeSize = 'temp = thisComp.layer("' + cntrlNullName[2] + '").effect("' + size + '")("Slider")+ thisComp.layer("' + cntrlNullName[2] + '").effect("' + sizeSelection + '")("Slider")';
+                var myStrokeColor = 'thisComp.layer("' + cntrlNullName[1] + '").effect("' + colorSelection + '")("Color")';
+                var myTrimStart = trimPathExpression[j];
+                var myTrimEnd = trimPathExpression[j+1];
                     
             var myShapeLayer = comp.layers.addShape();
+            myShapeLayer.name = sliceNames[j].text;
+            myShapeLayer.parent = cntrlNullS[3];
             var myShapeLayerContents = myShapeLayer.property("ADBE Root Vectors Group");
             var myShapeGroup = myShapeLayerContents.addProperty("ADBE Vector Group");
             var myEllipse = myShapeGroup.property("ADBE Vectors Group").addProperty("ADBE Vector Shape - Ellipse");
@@ -159,7 +178,7 @@ var submitButton2 = myWindow.add("button", undefined, "Create!");
             // Stroke size
             myShapeStroke.property("ADBE Vector Stroke Width").expression = myStrokeSize;
             // Stroke color
-            myShapeStroke.property("ADBE Vector Stroke Color").setValue(myStrokeColor);
+            myShapeStroke.property("ADBE Vector Stroke Color").expression = myStrokeColor;
             
             // Trim path
             var myTrim = myShapeGroup.property("ADBE Vectors Group").addProperty("ADBE Vector Filter - Trim");
@@ -168,8 +187,33 @@ var submitButton2 = myWindow.add("button", undefined, "Create!");
             // Trim End
             myTrim.end.expression = myTrimEnd;
 
+            // todo add slider for - CNTRL - slices / - CNTRL - slices = cntrlNullS[0]
+            var effectsProperty = cntrlNullS[0].property("ADBE Effect Parade");
+            var sliderSize = effectsProperty.addProperty("ADBE Slider Control");
+            // rename slider 1
+            sliderSize.name = sliceNames[j].text;
+            // set slider value
+            sliderSize.slider.setValue(slicePercentages[j].text);
+
+
+             // todo add slider for - CNTRL - size & extrusion / for each slice, so the slice can be highlighted
+             var sliderSize = effectsPropertySize.addProperty("ADBE Slider Control");
+             sliderSize.name = sizeSelection;
+
+            //todo color picker 
+            var effectsPropertyColor = cntrlNullS[1].property("ADBE Effect Parade");
+            var sliderColor = effectsPropertyColor.addProperty("ADBE Color Control");
+            sliderColor.name = colorSelection;
+            sliderColor.color.setValue(colorValue);
+            //todo side color picker , the same color but darkened
+            var effectsPropertyColor = cntrlNullS[1].property("ADBE Effect Parade");
+            var sliderColor = effectsPropertyColor.addProperty("ADBE Color Control");
+            sliderColor.name = colorSelectionSide;
+            sliderColor.color.setValue(colorValue*0.5);
+
             };          
             
+           
         };
 
 // Show the window
