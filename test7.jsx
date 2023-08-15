@@ -4,14 +4,16 @@ var myWindow = new Window("palette", "Pie Chart", undefined);
 var comp = app.project.activeItem;
 
 // static text
-var statText0 = myWindow.add("statictext", undefined, "How is this pie called?");
+var statText0 = myWindow.add("statictext", undefined, "Q: How is this pie called?");
+
 var pieName = myWindow.add("edittext", undefined, "", {
     multiline: false,
     enterKeySignalsOnChange: true,
     justify: "center",
 });
+
 pieName.characters = 20;
-var statText01 = myWindow.add("statictext", undefined, "What is the size of the pie?");
+var statText01 = myWindow.add("statictext", undefined, "Q: What is the size of the pie?");
 // Create a number only input field
 
 var sizeNumInput = myWindow.add("edittext", undefined, "", {
@@ -48,6 +50,7 @@ var extrusionNumInput = textGroup2.add("edittext", undefined, "", {
     numericOnly: true // Only allows numeric input
 });
 
+
 var statText4 = myWindow.add("statictext", undefined, "Is that so?");
 // Create a button to submit the numeric input and create text input fields
 var submitButton = myWindow.add("button", undefined, "Yepp!");
@@ -66,8 +69,12 @@ submitButton.onClick = function() {
     if (isNaN(inputValue) || inputValue < 1 || inputValue > 20) {
         alert("Invalid input! Please enter a number between 1 and 20.");
     } else {
-        createTextInputFields(inputValue);      
-    }
+        createTextInputFields(inputValue);   
+        if (checkbox1.value == true) {
+            alert('Make sure to set your 3D Renderer to CINEMA 4D if you want to use 3D pies!');
+            app.executeCommand(2007);
+        };
+    };
 };
 
 // Function to create text input fields based on the input value
@@ -111,25 +118,48 @@ function createTextInputFields(count) {
     // Fit the window size to accommodate the text input fields
     myWindow.layout.layout(true);
     myWindow.layout.resize();    
-
-    //! fix this
-    // if (checkbox1.value == true) {
-    //     alert('Make sure to set your 3D Renderer to CINEMA 4D if you want to use 3D pies!');
-    //     app.executeCommand(2007);
-    // };
         
 };
 
-
-
 // so let's create all those slices and controls
-var submitButton2 = myWindow.add("button", undefined, "Create!");
+    var submitButton2 = myWindow.add("button", undefined, "Bake it!");
+
+
 
         submitButton2.onClick = function() {
-            
+             
+            var percSum = [];
+            for (var m = 0; m < slicePercentages.length; m++) {
+                percSum.push(Number(slicePercentages[m].text));
+            }
+            // Initialize a variable to store the sum
+            var sum = 0;
+            // Loop through each number in the array and add it to the sum
+            for (var n = 0; n < percSum.length; n++) {
+            sum = sum + percSum[n];
+            }
 
-            // hard coded null names, if ever improved add null names here
-            var cntrlNullName = [" - CNTRL - slices" , " - CNTRL - colors" , " - CNTRL - size & extrusion" , " - CNTRL - position & rotation"];
+            if (sum < 100) {
+                alert("Be aware, the sum of all the percentage values is less than 100!");
+                createPieChart()
+            } if (sum > 100) {
+                alert("The sum of all the percantage values is more than a 100! Ouch, try it again!");
+            } if (sum == 100) {
+                createPieChart()
+            } 
+                      
+           
+        };
+
+function createPieChart() {
+
+    // hard coded null names, if ever improved add null names here
+            //var cntrlNullName = [" - CNTRL - slices" , " - CNTRL - colors" , " - CNTRL - size & extrusion" , " - CNTRL - position & rotation"];
+            var cntrlNullName = [" - CNTRL - slices" , " - CNTRL - colors" , " - CNTRL - size" , " - CNTRL - position & rotation"];
+            if (checkbox1.value == true) { 
+                cntrlNullName[2] = cntrlNullName[2] +' & extrusion';
+            };
+
             //updating the null names with the main pie name input
             for (var k = 0; k < cntrlNullName.length; k++) {
                 cntrlNullName[k] = pieName.text + cntrlNullName[k];
@@ -146,13 +176,13 @@ var submitButton2 = myWindow.add("button", undefined, "Create!");
             // Initialize an array starting with 0. This array will have one more length than your input
             var trimPathExpression = [0]; 
             // the 0 th element exception
-            var previous = 'temp = thisComp.layer("' + cntrlNullName[0] + '").effect("'+ sliceNames[0].text +'")("Slider")';
+            var previous = 'temp = thisComp.layer("' + cntrlNullName[0] + '").effect("'+ 1 + '.- ' + sliceNames[0].text +'")("Slider")';
             //add the 0th elemenent to the previous array
             trimPathExpression.push(previous);
 
             var next = '';            
             for (var i = 1; i < sliceNames.length; i++) {
-                next = previous + ' + thisComp.layer("' + cntrlNullName[0] + '").effect("'+ sliceNames[i].text +'")("Slider")';
+                next = previous + ' + thisComp.layer("' + cntrlNullName[0] + '").effect("' + (i+1) + '.- ' + sliceNames[i].text +'")("Slider")';
                 trimPathExpression.push(next);
                 previous = next;               
             };
@@ -181,11 +211,11 @@ var submitButton2 = myWindow.add("button", undefined, "Create!");
        
             
             for (var j = 0; j < sliceNames.length; j++) {
-
-                var colorSelection = sliceNames[j].text + ' - color';
-                var colorSelectionSide = sliceNames[j].text + ' - sidecolor';
-                var sizeSelection = sliceNames[j].text + '-selection';
-                var extrusionSelection = sliceNames[j].text + '-extrusion selection';
+                var sliceNamePlusNumber = j+1 + '.- ' + sliceNames[j].text;
+                var colorSelection = sliceNamePlusNumber + ' - color';
+                var colorSelectionSide = sliceNamePlusNumber + ' - sidecolor';
+                var sizeSelection = sliceNamePlusNumber + '-selection';
+                var extrusionSelection = sliceNamePlusNumber + '-extrusion selection';
                 var colorValue = [Math.random(),Math.random(),Math.random()];
                 var myEllipseSize = 'temp = thisComp.layer("' + cntrlNullName[2] + '").effect("' + size + '")("Slider") + thisComp.layer("' + cntrlNullName[2] + '").effect("' + sizeSelection + '")("Slider"); [temp,temp]';
                 var myStrokeSize = 'temp = thisComp.layer("' + cntrlNullName[2] + '").effect("' + size + '")("Slider")+ thisComp.layer("' + cntrlNullName[2] + '").effect("' + sizeSelection + '")("Slider")';
@@ -196,7 +226,7 @@ var submitButton2 = myWindow.add("button", undefined, "Create!");
                 var extrusionValue = 'thisComp.layer("' + cntrlNullName[2] + '").effect("' + extrusion + '")("Slider")+thisComp.layer("' + cntrlNullName[2] + '").effect("' + extrusionSelection + '")("Slider")';
                     
             var myShapeLayer = comp.layers.addShape();
-            myShapeLayer.name = sliceNames[j].text;
+            myShapeLayer.name = sliceNamePlusNumber;
             myShapeLayer.parent = cntrlNullS[3];
             var myShapeLayerContents = myShapeLayer.property("ADBE Root Vectors Group");
             var myShapeGroup = myShapeLayerContents.addProperty("ADBE Vector Group");
@@ -233,7 +263,7 @@ var submitButton2 = myWindow.add("button", undefined, "Create!");
             var effectsProperty = cntrlNullS[0].property("ADBE Effect Parade");
             var sliderSize = effectsProperty.addProperty("ADBE Slider Control");
             // rename slider 1
-            sliderSize.name = sliceNames[j].text;
+            sliderSize.name = sliceNamePlusNumber;
             // set slider value
             sliderSize.slider.setValue(slicePercentages[j].text);
 
@@ -259,9 +289,9 @@ var submitButton2 = myWindow.add("button", undefined, "Create!");
             sliderColor.color.setValue(colorValue*0.5);        
 
             };          
-            
-           
-        };
+
+};
+        
 
 // Show the window
 myWindow.show();
