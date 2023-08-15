@@ -1,5 +1,7 @@
 // Create a new window
 var myWindow = new Window("palette", "Pie Chart", undefined);
+// won't work if comp is not defined
+var comp = app.project.activeItem;
 
 // static text
 var statText0 = myWindow.add("statictext", undefined, "How is this pie called?");
@@ -39,6 +41,12 @@ textGroup2.orientation = "row"
 
 var statText3 = textGroup2.add("statictext", undefined, "Do you want it 3D?");
 var checkbox1 = textGroup2.add("checkbox", undefined, "");
+var extrusionNumInput = textGroup2.add("edittext", undefined, "", {
+    multiline: false,
+    enterKeySignalsOnChange: true,
+    justify: "center",
+    numericOnly: true // Only allows numeric input
+});
 
 var statText4 = myWindow.add("statictext", undefined, "Is that so?");
 // Create a button to submit the numeric input and create text input fields
@@ -103,7 +111,14 @@ function createTextInputFields(count) {
     // Fit the window size to accommodate the text input fields
     myWindow.layout.layout(true);
     myWindow.layout.resize();    
-}
+
+    //! fix this
+    // if (checkbox1.value == true) {
+    //     alert('Make sure to set your 3D Renderer to CINEMA 4D if you want to use 3D pies!');
+    //     app.executeCommand(2007);
+    // };
+        
+};
 
 
 
@@ -111,8 +126,7 @@ function createTextInputFields(count) {
 var submitButton2 = myWindow.add("button", undefined, "Create!");
 
         submitButton2.onClick = function() {
-            // won't work if comp is not defined
-            var comp = app.project.activeItem;
+            
 
             // hard coded null names, if ever improved add null names here
             var cntrlNullName = [" - CNTRL - slices" , " - CNTRL - colors" , " - CNTRL - size & extrusion" , " - CNTRL - position & rotation"];
@@ -145,12 +159,20 @@ var submitButton2 = myWindow.add("button", undefined, "Create!");
 
             // ! vars and maths for the size of the pie
             var size = 'Size';
+            var extrusion = 'Extrusion';
             var effectsPropertySize = cntrlNullS[2].property("ADBE Effect Parade");
             var sliderSize = effectsPropertySize.addProperty("ADBE Slider Control");
             sliderSize.name = size;
             // set slider value , and add expression which devides the input number by 2
             sliderSize.slider.setValue(sizeNumInput.text);
             sliderSize.slider.expression = 'effect("' + size + '")(1)/2';
+            if (checkbox1.value == true) {
+                var sliderExtrusion = effectsPropertySize.addProperty("ADBE Slider Control");
+                sliderExtrusion.name = extrusion;
+                sliderExtrusion.slider.setValue(extrusionNumInput.text);
+            };
+             //! position to rotation cntrl to 3d
+             cntrlNullS[3].threeDLayer = checkbox1.value;
        
             
             for (var j = 0; j < sliceNames.length; j++) {
@@ -158,6 +180,7 @@ var submitButton2 = myWindow.add("button", undefined, "Create!");
                 var colorSelection = sliceNames[j].text + ' - color';
                 var colorSelectionSide = sliceNames[j].text + ' - sidecolor';
                 var sizeSelection = sliceNames[j].text + '-selection';
+                var extrusionSelection = sliceNames[j].text + '-extrusion selection';
                 var colorValue = [Math.random(),Math.random(),Math.random()];
                 var myEllipseSize = 'temp = thisComp.layer("' + cntrlNullName[2] + '").effect("' + size + '")("Slider") + thisComp.layer("' + cntrlNullName[2] + '").effect("' + sizeSelection + '")("Slider"); [temp,temp]';
                 var myStrokeSize = 'temp = thisComp.layer("' + cntrlNullName[2] + '").effect("' + size + '")("Slider")+ thisComp.layer("' + cntrlNullName[2] + '").effect("' + sizeSelection + '")("Slider")';
@@ -179,6 +202,8 @@ var submitButton2 = myWindow.add("button", undefined, "Create!");
             myShapeStroke.property("ADBE Vector Stroke Width").expression = myStrokeSize;
             // Stroke color
             myShapeStroke.property("ADBE Vector Stroke Color").expression = myStrokeColor;
+            // 3D layer
+            myShapeLayer.threeDLayer = checkbox1.value;
             
             // Trim path
             var myTrim = myShapeGroup.property("ADBE Vectors Group").addProperty("ADBE Vector Filter - Trim");
@@ -199,6 +224,11 @@ var submitButton2 = myWindow.add("button", undefined, "Create!");
              // todo add slider for - CNTRL - size & extrusion / for each slice, so the slice can be highlighted
              var sliderSize = effectsPropertySize.addProperty("ADBE Slider Control");
              sliderSize.name = sizeSelection;
+             // todo size and extrusion cntrl add extrusion sliders if 3d is thicked
+             if (checkbox1.value == true) {
+                var sliderExtrusion = effectsPropertySize.addProperty("ADBE Slider Control");
+                sliderExtrusion.name = extrusionSelection;
+            };
 
             //todo color picker 
             var effectsPropertyColor = cntrlNullS[1].property("ADBE Effect Parade");
@@ -209,7 +239,7 @@ var submitButton2 = myWindow.add("button", undefined, "Create!");
             var effectsPropertyColor = cntrlNullS[1].property("ADBE Effect Parade");
             var sliderColor = effectsPropertyColor.addProperty("ADBE Color Control");
             sliderColor.name = colorSelectionSide;
-            sliderColor.color.setValue(colorValue*0.5);
+            sliderColor.color.setValue(colorValue*0.5);        
 
             };          
             
