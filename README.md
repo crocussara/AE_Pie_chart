@@ -38,3 +38,25 @@ A footnote can also have multiple lines[^2].
 > [!WARNING]
 > Critical content demanding immediate user attention due to potential risks.
  Ignoring markdown \*our-new-project\* to \*our-old-project\*.
+>
+```var a = ["1", "1","1","1","1" ];
+var b = ["1", "1","1", "s","1", "s"];
+
+var c = a.length-b.length;
+
+if (c > 0) {
+  console.log("addj hozzá")
+} 
+if (c < 0) {
+ console.log("vegyél el belőle"+c)
+  for (var i = 0; i < c; i++) {
+    var d = "muhaha" + i
+    console.log(d)
+  }
+  
+}
+if (c == 0) {
+  console.log("ne csinálj semmit")
+}
+
+```
