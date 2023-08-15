@@ -48,19 +48,14 @@ createButton.onClick = function() {
             myShapeStroke.property("ADBE Vector Stroke Width").expression = '20';
             alert("11");
             myShapeLayer.threeDLayer = true;
-            //! this causes adobe to crash
-            var bb = myShapeGroup.property("ADBE Vector Group");
+            // okay this is the correct order, heureka!
+            var bb = myShapeGroup.property("ADBE Vector Materials Group");
             alert("11");
             bb.addProperty("ADBE Vec3D Side RGB");
             alert("11");
-  
-  
-
-
-    
-    //! Extrude the shape layer
-    myShapeLayer.property("ADBE Extrsn Options Group").property("ADBE Extrsn Depth").setValue(100);
-    alert("1");
+             //! Extrude the shape layer
+            myShapeLayer.property("ADBE Extrsn Options Group").property("ADBE Extrsn Depth").expression = '100';
+            alert("1");
     
 };
 
