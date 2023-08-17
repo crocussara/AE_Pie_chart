@@ -4,7 +4,8 @@ Quick sketch for the how to use it. Fix it later, make it more visual! This will
 
 Okkay, so let's start it: (Hmm if this whole thing will be super long, then let's make a really short and basic one as well?)
 Make sure to: fix the tone of voice, the continuity, cut back if it is too much, or make sure that the flow is smooth fe: installing scripts, good to know, but probably a well know stuff, so maybe make it to a footnot?)
-### Do you need some fancy animatable pie charts in after effects? Well, this script got you covered, you can bake the most conviniently structured hassle free pies with it!
+## Do you need some fancy animatable pie charts in after effects? 
+### Well, this script got you covered, you can bake the most conviniently structured hassle free pies with it!
 
 How does it work? Pretty simple, just import the script in your favourite way to after effects, if you hvaen't used scripts before this can be File > Scripts > Run script file.. OR File > Scripts > Install script file.. OR File > Scripts > Install ScriptUI panel.. Whichever suits you! If you just run the script, then you have to store it in a location you can find it later if needed. In case of installing them, you will always be able to access it from either your scripts menu (if you installed as a script file) or from the windows menu (if you installed as a scriptUI file). Be aware, that if you installed it, you might have to restart your AE in order to show up!
 
@@ -49,6 +50,9 @@ Second, you have got 4 different null layers:
 
 
  ## More technical stuff. Maybe? If not then just more verbousus explanations
+
+ How is the whole thing builds up
+ trim paths, the additions, etc
 
  Different shape of charts:
   donought, an easy fix
