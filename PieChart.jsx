@@ -10,8 +10,8 @@
 
     function scriptPieChart(thisObj) {
         var myWindow = (thisObj instanceof Panel) ? thisObj : new Window("palette", "Pie Chart", undefined);
-        // won't work if comp is not defined
 
+        // won't work if comp is not defined
         var comp = app.project.activeItem;
         
         var panel1 = myWindow.add("panel", undefined, undefined);
@@ -346,7 +346,12 @@
                 
 
         // Show the window
-        myWindow.show();
+        //myWindow.show();
+        myWindow.onResizing = myWindow.onResize = function () {
+            this.layout.resize();
+        };
+        myWindow instanceof Window
+            ? (myWindow.center(), myWindow.show()) : (myWindow.layout.layout(true), myWindow.layout.resize());
 
     }
 })(this);
