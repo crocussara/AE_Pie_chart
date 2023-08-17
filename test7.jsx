@@ -70,10 +70,6 @@ submitButton.onClick = function() {
         alert("Invalid input! Please enter a number between 1 and 20.");
     } else {
         createTextInputFields(inputValue);   
-        if (checkbox1.value == true) {
-            alert('Make sure to set your 3D Renderer to CINEMA 4D if you want to use 3D pies!');
-            app.executeCommand(2007);
-        };
     };
 };
 
@@ -141,10 +137,18 @@ function createTextInputFields(count) {
 
             if (sum < 100) {
                 alert("Be aware, the sum of all the percentage values is less than 100!");
+                if (checkbox1.value == true) {
+                    alert('Make sure to set your 3D Renderer to CINEMA 4D if you want to use 3D pies!');
+                    app.executeCommand(2007);
+                };
                 createPieChart()
             } if (sum > 100) {
                 alert("The sum of all the percantage values is more than a 100! Ouch, try it again!");
             } if (sum == 100) {
+                if (checkbox1.value == true) {
+                    alert('Make sure to set your 3D Renderer to CINEMA 4D if you want to use 3D pies!');
+                    app.executeCommand(2007);
+                };
                 createPieChart()
             } 
                       
@@ -168,6 +172,7 @@ function createPieChart() {
             var cntrlNullS = [];
             for (var l = 0; l < cntrlNullName.length; l++) {
                 var cntrlNull = comp.layers.addNull();
+                cntrlNull.label = 2;
                 cntrlNull.name = cntrlNullName[l];
                 cntrlNullS.push(cntrlNull);
             };
@@ -225,68 +230,73 @@ function createPieChart() {
                 var myTrimEnd = trimPathExpression[j+1];
                 var extrusionValue = 'thisComp.layer("' + cntrlNullName[2] + '").effect("' + extrusion + '")("Slider")+thisComp.layer("' + cntrlNullName[2] + '").effect("' + extrusionSelection + '")("Slider")';
                     
-            var myShapeLayer = comp.layers.addShape();
-            myShapeLayer.name = sliceNamePlusNumber;
-            myShapeLayer.parent = cntrlNullS[3];
-            var myShapeLayerContents = myShapeLayer.property("ADBE Root Vectors Group");
-            var myShapeGroup = myShapeLayerContents.addProperty("ADBE Vector Group");
-            var myEllipse = myShapeGroup.property("ADBE Vectors Group").addProperty("ADBE Vector Shape - Ellipse");
-            // Ellipse size
-            myEllipse.property("ADBE Vector Ellipse Size").expression = myEllipseSize;
-            //Ellipse stroke
-            var myShapeStroke = myShapeGroup.property("ADBE Vectors Group").addProperty("ADBE Vector Graphic - Stroke");
-            // Stroke size
-            myShapeStroke.property("ADBE Vector Stroke Width").expression = myStrokeSize;
-            // Stroke color
-            myShapeStroke.property("ADBE Vector Stroke Color").expression = myStrokeColor;
-            // 3D layer
-            myShapeLayer.threeDLayer = checkbox1.value;
-            
-            // Trim path
-            var myTrim = myShapeGroup.property("ADBE Vectors Group").addProperty("ADBE Vector Filter - Trim");
-            // Trim Start
-            myTrim.start.expression = myTrimStart;
-            // Trim End
-            myTrim.end.expression = myTrimEnd;
-
-            //todo if 3d is checked, for the shape layers
-            if (checkbox1.value == true) {
-                var threeDSide = myShapeGroup.property("ADBE Vector Materials Group");
-                threeDSide.addProperty("ADBE Vec3D Side RGB");
-                threeDSide.property("ADBE Vec3D Side RGB").expression = myStrokeSideColor;
-                //! Extrude the shape layer
-                myShapeLayer.property("ADBE Extrsn Options Group").property("ADBE Extrsn Depth").expression = extrusionValue;
+                var myShapeLayer = comp.layers.addShape();
+                myShapeLayer.label = 9;
+                myShapeLayer.name = sliceNamePlusNumber;
+                myShapeLayer.parent = cntrlNullS[3];
+                var myShapeLayerContents = myShapeLayer.property("ADBE Root Vectors Group");
+                var myShapeGroup = myShapeLayerContents.addProperty("ADBE Vector Group");
+                var myEllipse = myShapeGroup.property("ADBE Vectors Group").addProperty("ADBE Vector Shape - Ellipse");
+                // Ellipse size
+                myEllipse.property("ADBE Vector Ellipse Size").expression = myEllipseSize;
+                //Ellipse stroke
+                var myShapeStroke = myShapeGroup.property("ADBE Vectors Group").addProperty("ADBE Vector Graphic - Stroke");
+                // Stroke size
+                myShapeStroke.property("ADBE Vector Stroke Width").expression = myStrokeSize;
+                // Stroke color
+                myShapeStroke.property("ADBE Vector Stroke Color").expression = myStrokeColor;
+                // 3D layer
+                myShapeLayer.threeDLayer = checkbox1.value;
                 
-            };
+                // Trim path
+                var myTrim = myShapeGroup.property("ADBE Vectors Group").addProperty("ADBE Vector Filter - Trim");
+                // Trim Start
+                myTrim.start.expression = myTrimStart;
+                // Trim End
+                myTrim.end.expression = myTrimEnd;
 
-            // todo add slider for - CNTRL - slices / - CNTRL - slices = cntrlNullS[0]
-            var effectsProperty = cntrlNullS[0].property("ADBE Effect Parade");
-            var sliderSize = effectsProperty.addProperty("ADBE Slider Control");
-            // rename slider 1
-            sliderSize.name = sliceNamePlusNumber;
-            // set slider value
-            sliderSize.slider.setValue(slicePercentages[j].text);
+                //todo if 3d is checked, for the shape layers
+                if (checkbox1.value == true) {
+                    var threeDSide = myShapeGroup.property("ADBE Vector Materials Group");
+                    threeDSide.addProperty("ADBE Vec3D Side RGB");
+                    threeDSide.property("ADBE Vec3D Side RGB").expression = myStrokeSideColor;
+                    //! Extrude the shape layer
+                    myShapeLayer.property("ADBE Extrsn Options Group").property("ADBE Extrsn Depth").expression = extrusionValue;
+                    
+                };
+
+                // todo add slider for - CNTRL - slices / - CNTRL - slices = cntrlNullS[0]
+                var effectsProperty = cntrlNullS[0].property("ADBE Effect Parade");
+                var sliderSize = effectsProperty.addProperty("ADBE Slider Control");
+                // rename slider 1
+                sliderSize.name = sliceNamePlusNumber;
+                // set slider value
+                sliderSize.slider.setValue(slicePercentages[j].text);
 
 
-             // todo add slider for - CNTRL - size & extrusion / for each slice, so the slice can be highlighted
-             var sliderSize = effectsPropertySize.addProperty("ADBE Slider Control");
-             sliderSize.name = sizeSelection;
-             // todo size and extrusion cntrl add extrusion sliders if 3d is thicked
-             if (checkbox1.value == true) {
-                var sliderExtrusion = effectsPropertySize.addProperty("ADBE Slider Control");
-                sliderExtrusion.name = extrusionSelection;
-            };
+                // todo add slider for - CNTRL - size & extrusion / for each slice, so the slice can be highlighted
+                var sliderSize = effectsPropertySize.addProperty("ADBE Slider Control");
+                sliderSize.name = sizeSelection;
+                // todo size and extrusion cntrl add extrusion sliders if 3d is thicked
+                if (checkbox1.value == true) {
+                    var sliderExtrusion = effectsPropertySize.addProperty("ADBE Slider Control");
+                    sliderExtrusion.name = extrusionSelection;
+                };
 
-            //todo color picker 
-            var effectsPropertyColor = cntrlNullS[1].property("ADBE Effect Parade");
-            var sliderColor = effectsPropertyColor.addProperty("ADBE Color Control");
-            sliderColor.name = colorSelection;
-            sliderColor.color.setValue(colorValue);
-            //todo side color picker , the same color but darkened
-            var effectsPropertyColor = cntrlNullS[1].property("ADBE Effect Parade");
-            var sliderColor = effectsPropertyColor.addProperty("ADBE Color Control");
-            sliderColor.name = colorSelectionSide;
-            sliderColor.color.setValue(colorValue*0.5);        
+                //todo color picker 
+                var effectsPropertyColor = cntrlNullS[1].property("ADBE Effect Parade");
+                var sliderColor = effectsPropertyColor.addProperty("ADBE Color Control");
+                sliderColor.name = colorSelection;
+                sliderColor.color.setValue(colorValue);
+                //todo side color picker , the same color but darkened
+                if (checkbox1.value == true) {
+                    var effectsPropertyColor = cntrlNullS[1].property("ADBE Effect Parade");
+                    var sliderColor = effectsPropertyColor.addProperty("ADBE Color Control");
+                    sliderColor.name = colorSelectionSide;
+                    sliderColor.color.setValue(colorValue*0.5);
+                };   
+                // lock shape layer, since there are the CNTRL layers for control
+                myShapeLayer.locked = true;
 
             };          
 
