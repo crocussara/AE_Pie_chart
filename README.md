@@ -58,5 +58,13 @@ if (c < 0) {
 if (c == 0) {
   console.log("ne csinálj semmit")
 }
+```
+```
+
+
+myArray = ['one', 'two', 'three', ''];
+if(myArray.includes('')) {
+  console.log("yaay")
+}
 
 ```
