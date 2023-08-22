@@ -183,7 +183,7 @@
                             };
                             createPieChart()
                         } if (sum > 100) {
-                            alert("The sum of all the percantage values is more than a 100! It is already " + sum + "! Ouch, try it again!");
+                            alert("The sum of all the percantage values is more than a 100! It is already " + sum + "! Ouch, try it again!"); 
                         } if (sum == 100) {
                             if (threeDBoolean == true) {
                                 alert('Make sure to set your 3D Renderer to CINEMA 4D if you want to use 3D pies!');
