@@ -176,14 +176,14 @@
                         }   
                         // doing some quick checks and if the value of all percantage values is more than a 100 then alert and abort, if less then just alert but continue, if it is 100 then just proceed
                         if (sum < 100) {
-                            alert("Be aware, the sum of all the percentage values is less than 100!");
+                            alert("Be aware, the sum of all the percentage values is less than 100! It is only "+ sum + "!");
                             if (threeDBoolean == true) {
                                 alert('Make sure to set your 3D Renderer to CINEMA 4D if you want to use 3D pies!');
                                 app.executeCommand(2007);
                             };
                             createPieChart()
                         } if (sum > 100) {
-                            alert("The sum of all the percantage values is more than a 100! Ouch, try it again!");
+                            alert("The sum of all the percantage values is more than a 100! It is already " + sum + "! Ouch, try it again!");
                         } if (sum == 100) {
                             if (threeDBoolean == true) {
                                 alert('Make sure to set your 3D Renderer to CINEMA 4D if you want to use 3D pies!');
