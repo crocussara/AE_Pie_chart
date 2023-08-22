@@ -1,1 +1,1 @@
-![Artboard 1](https://github.com/crocussara/AE_Pie_chart/assets/120991342/ee30873f-9f4d-4723-a1b9-c2e57763133e)
+![Artboard 1](https://github.com/crocussara/AE_Pie_chart/assets/120991342/d01eafcf-3ba7-4f20-bac6-6cae56b6dfaa)
