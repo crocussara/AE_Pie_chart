@@ -1,7 +1,7 @@
 # AE Pie Chart script
 
 > [!IMPORTANT]
-> Crucial information necessary for users to succeed.
+> [User Guide here!](GUIDE.md)
 
 Quick sketch for the how to use it. Fix it later, make it more visual! This will later be a seperate file, with a lot of images, print screens, for the end users. the readme file will be a bit more technical, more like a journal, mentioning possible upgrades, ideas, walks through this project
 
