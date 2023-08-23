@@ -6,10 +6,12 @@
 > [Visual user guide here!](GUIDE.md)
 
 
-How does it work? Pretty simple, just import the script in your favourite way to after effects, if you hvaen't used scripts before this can be File > Scripts > Run script file.. OR File > Scripts > Install script file.. OR File > Scripts > Install ScriptUI panel.. Whichever suits you! If you just run the script, then you have to store it in a location you can find it later if needed. In case of installing them, you will always be able to access it from either your scripts menu (if you installed as a script file) or from the windows menu (if you installed as a scriptUI file). Be aware, that if you installed it, you might have to restart your AE in order to show up!
+How does it work? Pretty simple, just import the script in your favourite way to After Effects.[^1]
 
-So you've opened up the script, and you can see this panel in front of you (image).
-To make sure that the scripts work, please have an active composition (open composition) already in your AE file! First, just fill out the form, make sure that you fill out every field! (exception can be the 3d height of the pie, but I tried to word the panel in a way that it makes it obvious). Maybe an image with some text on it would be more suiting here.
+So you've opened up the script, and you can see this panel in front of you .To make sure that the scripts work, please have an active composition already in your AE file! First, just fill out the form, make sure that you fill out every field!<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 572.76 1393.43"/>![image](https://github.com/crocussara/AE_Pie_chart/assets/120991342/14d99121-63dc-4263-ab2b-e90330a3c18c)
+
+ (exception can be the 3d height of the pie, but I tried to word the panel in a way that it makes it obvious). Maybe an image with some text on it would be more suiting here.
 Press yepp, fill out the slides. Make sure that you fill out every infut field, if you need less slices you can always lower the amount and press yepp again! when you're working and animating lots of chart data, it is really useful to name them, so don't be lazy, it'll be really helpful when it comes to control too! (a slight cheat if you really dispise having an easy time, you can have the same name fore more than one slices)
 When you're finished with all of this, press bake so the script can bake you a delicious looking pie chart!
 You might get alert messages if you exceeded 100 with the sum of percentage values, and in this case, you have to fix it, before being able to execute the script properly.
@@ -66,6 +68,13 @@ Second, you have got 4 different null layers:
   keep the input data if the slice value is refressed?
 
   Add and subtract buttons to add slices instead of a number input? Maybe? not totally convinced?
+
+  [^1]: If you haven't used scripts before this can be
+  * File > Scripts > Run script file..
+  * File > Scripts > Install script file..
+  * File > Scripts > Install ScriptUI panel..
+Whichever suits you! If you just run the script, then you have to store it in a location you can find it later if needed. In case of installing them, you will always be able to access it from either your scripts menu (if you installed as a script file) or from the windows menu (if you installed as a scriptUI file). Be aware, that if you installed it, you might have to restart your AE in order to show up!!
+
 
   Hmmm what else is  there to be talked about?
 
