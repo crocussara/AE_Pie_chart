@@ -12,8 +12,6 @@
 
 Pie Chart script, to create said charts. Adobe Extendscript, to use it with Adobe After Effects
 
-Sara Safrany https://github.com/crocussara 
-Portfolio: https://www.behance.net/safranysara
 Created: 2023
 Tested on Adobe AE CC 2020 and AE CC 2023
 
