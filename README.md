@@ -2,7 +2,7 @@
 
 
 > [!IMPORTANT]
-> Use the visual guide if you're just want to use the script
+> Use the visual guide if you're just want to use the script.
 > [Visual user guide here!](GUIDE.md)
 
 ## More technical stuff. Maybe? If not then just more verbousus explanations
@@ -14,12 +14,13 @@
 How does it work? Pretty simple, just import the script in your favourite way to After Effects.[^1]
 
 So you've opened up the script, and you can see this panel in front of you .To make sure that the scripts work, please have an active composition already in your AE file! First, just fill out the form, make sure that you fill out every field! (exception can be the 3d height of the pie, but I tried to word the panel in a way that it makes it obvious). 
+
 ![image](https://github.com/crocussara/AE_Pie_chart/assets/120991342/14d99121-63dc-4263-ab2b-e90330a3c18c)
 
 
 
  
-Press yepp, fill out the slides. Make sure that you fill out every infut field, if you need less slices you can always lower the amount and press yepp again! When you're working and animating lots of chart data, it is really useful to name them, so don't be lazy, it'll be really helpful when it comes to control too! (a slight cheat if you really dispise having an easy time, you can have the same name fore more than one slices)
+Press yepp, fill out the slides. Make sure that you fill out every infut field, if you need less slices you can always lower the amount and press yepp again! When you're working and animating lots of chart data, it is really useful to name[^2] them, so don't be lazy, it'll be really helpful when it comes to control too!
 
 When you're finished with all of this, press bake so the script can bake you a delicious looking pie chart!
 
@@ -64,9 +65,11 @@ Oh one more thing: often when the pie is generated, AE clames that there are fau
 
  If not, or anything else, don't be afraid of writing a message.
  I hope you will have a good time. This is my very first AE script to write, I hope it works as good to you as it did to me!
+ 
  Sara
 
   [^1]: If you haven't used scripts before this can be  * File > Scripts > Run script file..  * File > Scripts > Install script file..  * File > Scripts > Install ScriptUI panel.. Whichever suits you! If you just run the script, then you have to store it in a location you can find it later if needed. In case of installing them, you will always be able to access it from either your scripts menu (if you installed as a script file) or from the windows menu (if you installed as a scriptUI file). Be aware, that if you installed it, you might have to restart your AE in order to show up!!
+  [^2]:  A slight cheat if you really dispise having an easy time, you can have the same name fore more than one slices.
 
 
   Hmmm what else is  there to be talked about?
