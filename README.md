@@ -9,7 +9,7 @@
 How does it work? Pretty simple, just import the script in your favourite way to After Effects.[^1]
 
 So you've opened up the script, and you can see this panel in front of you .To make sure that the scripts work, please have an active composition already in your AE file! First, just fill out the form, make sure that you fill out every field!<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 572.76 1393.43"/>![image](https://github.com/crocussara/AE_Pie_chart/assets/120991342/14d99121-63dc-4263-ab2b-e90330a3c18c)
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 auto 800"/>![image](https://github.com/crocussara/AE_Pie_chart/assets/120991342/14d99121-63dc-4263-ab2b-e90330a3c18c)
 
  (exception can be the 3d height of the pie, but I tried to word the panel in a way that it makes it obvious). Maybe an image with some text on it would be more suiting here.
 Press yepp, fill out the slides. Make sure that you fill out every infut field, if you need less slices you can always lower the amount and press yepp again! when you're working and animating lots of chart data, it is really useful to name them, so don't be lazy, it'll be really helpful when it comes to control too! (a slight cheat if you really dispise having an easy time, you can have the same name fore more than one slices)
