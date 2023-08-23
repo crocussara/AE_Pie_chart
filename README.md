@@ -12,13 +12,9 @@
 
 
 How does it work? Pretty simple, just import the script in your favourite way to After Effects.[^1]
+What should you do, if you filled out everything and nothing happens? Well, so far all i can say is that restart the script. All known issues, bugs, and possible improvemnets are listed under the issues tab on github!
 
-So you've opened up the script, and you can see this panel in front of you .To make sure that the scripts work, please have an active composition already in your AE file! First, just fill out the form, make sure that you fill out every field! (exception can be the 3d height of the pie, but I tried to word the panel in a way that it makes it obvious). 
-
-![image](https://github.com/crocussara/AE_Pie_chart/assets/120991342/14d99121-63dc-4263-ab2b-e90330a3c18c)
-
-
-
+So you've opened up the script, and you can see it opening up as a new window in Aftwr Effects .To make sure that the scripts work, please have an active composition already in your AE file! First, just fill out the form, make sure that you fill out every field! (exception can be the 3d height of the pie, but I tried to word the panel in a way that it makes it obvious). 
  
 Press yepp, fill out the slides. Make sure that you fill out every infut field, if you need less slices you can always lower the amount and press yepp again! When you're working and animating lots of chart data, it is really useful to name[^2] them, so don't be lazy, it'll be really helpful when it comes to control too!
 
