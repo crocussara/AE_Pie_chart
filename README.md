@@ -1,12 +1,10 @@
 # AE Pie Chart script
-## Use the visual guide if you're just want to use the script
+
 
 > [!IMPORTANT]
+> Use the visual guide if you're just want to use the script
 > [Visual user guide here!](GUIDE.md)
 
-
-## Do you need some fancy animatable pie charts in after effects? 
-### Well, this script got you covered, you can bake the most conviniently structured hassle free pies with it!
 ## More technical stuff. Maybe? If not then just more verbousus explanations
 
  How is the whole thing builds up
