@@ -7,6 +7,10 @@
 
 ## Do you need some fancy animatable pie charts in after effects? 
 ### Well, this script got you covered, you can bake the most conviniently structured hassle free pies with it!
+## More technical stuff. Maybe? If not then just more verbousus explanations
+
+ How is the whole thing builds up
+ trim paths, the additions, etc
 
 
 How does it work? Pretty simple, just import the script in your favourite way to After Effects.[^1]
@@ -37,11 +41,11 @@ First of all, be so kind and make sure to have the layers names displayed on the
 
  These null layers have different functions, and can provide you with a much niceer experience when it comes to animation than if you would have to do everything on each layer manually.
 
-###Position and rotation
+### Position and rotation
 Pretty self explanatory, this is the classic parent layer, use its position and rotation values to move and rotate the pie If you use a 3D pie the null layer is automatically rotated to 125 degrees on the X axis so the 3D-ness is visiable.
 
 
- ###Size
+ ### Size
  This one is already a bit more complicated.Open up the effects window and you will see a bunch of sliders added to this layer! The first slider is responsible for the overall size, change the value here and everything grows, srinks. Then each slice has an individual control slider as well.
 This can be useful if you want to put the emphasis on a slice: highlight them without making its value any different.
 
@@ -49,43 +53,20 @@ If you choose to have a 3D pie, you will find even more sliders here. These are 
 
 Have fun playing with them!
 
-
-###Color
+### Color
 The pie comes with automatically generated random colors, those can be changed, fixed here!
 Again, in the effects panel where you can see these values the best. It would had been over of my level of coding to provide the script with color input fields, and it’s easier like this, using adobe-s own color picker I think. If you have a 3D pie, it comes with auto generated side colors, it is set to be a darker variety of the slice's main color, but only on generation, it can be changed now from this null layer.
 
-###Slices
+### Slices
 Again effects panel and sliders. If you change one value the other ones are still keeping their percentage values.
  
 Be careful, there won't be any alert messages in this stage if your values are exceeding 100!
-
-
 
 Oh one more thing: often when the pie is generated, AE clames that there are faulty expressions on some of the layers. There aren't. If you press uu what opens up all the expressions, you can see that there are no faults there, and the error message will dissappear as well.
 
  If not, or anything else, don't be afraid of writing a message.
  I hope you will have a good time. This is my very first AE script to write, I hope it works as good to you as it did to me!
  Sara
-
-
- ## More technical stuff. Maybe? If not then just more verbousus explanations
-
- How is the whole thing builds up
- trim paths, the additions, etc
-
- Different shape of charts:
-  donought, an easy fix
-  other, maybe even user input? Could be an interesing thing to play with, so far I dunno how should I do it
-
-  That small cheat value, what sometimes needed for seemlessness!
-
-  disecting a slice onto further slices
-
-  How could I hide the bake it button in the beggining?
-
-  keep the input data if the slice value is refressed?
-
-  Add and subtract buttons to add slices instead of a number input? Maybe? not totally convinced?
 
   [^1]: If you haven't used scripts before this can be  * File > Scripts > Run script file..  * File > Scripts > Install script file..  * File > Scripts > Install ScriptUI panel.. Whichever suits you! If you just run the script, then you have to store it in a location you can find it later if needed. In case of installing them, you will always be able to access it from either your scripts menu (if you installed as a script file) or from the windows menu (if you installed as a scriptUI file). Be aware, that if you installed it, you might have to restart your AE in order to show up!!
 
