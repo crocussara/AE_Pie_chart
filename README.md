@@ -10,6 +10,13 @@
  How is the whole thing builds up
  trim paths, the additions, etc
 
+ // Pie Chart script, to create said charts. Adobe Extendscript, to use it with Adobe After Effects
+
+// Sara Safrany https://github.com/crocussara 
+// Portfolio: https://www.behance.net/safranysara
+// Created: 2023
+// Tested on Adobe AE CC 2020 and AE CC 2023
+
 
 How does it work? Pretty simple, just import the script in your favourite way to After Effects.[^1]
 What should you do, if you filled out everything and nothing happens? Well, so far all i can say is that restart the script. All known issues, bugs, and possible improvemnets are listed under the issues tab on github!
