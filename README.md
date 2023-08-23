@@ -1,14 +1,18 @@
 # AE Pie Chart script
-## Do you need some fancy animatable pie charts in after effects? 
-### Well, this script got you covered, you can bake the most conviniently structured hassle free pies with it!
+## Use the visual guide if you're just want to use the script
 
 > [!IMPORTANT]
 > [Visual user guide here!](GUIDE.md)
 
 
+## Do you need some fancy animatable pie charts in after effects? 
+### Well, this script got you covered, you can bake the most conviniently structured hassle free pies with it!
+
+
 How does it work? Pretty simple, just import the script in your favourite way to After Effects.[^1]
 
-So you've opened up the script, and you can see this panel in front of you .To make sure that the scripts work, please have an active composition already in your AE file! First, just fill out the form, make sure that you fill out every field! (exception can be the 3d height of the pie, but I tried to word the panel in a way that it makes it obvious). ![image](https://github.com/crocussara/AE_Pie_chart/assets/120991342/14d99121-63dc-4263-ab2b-e90330a3c18c)
+So you've opened up the script, and you can see this panel in front of you .To make sure that the scripts work, please have an active composition already in your AE file! First, just fill out the form, make sure that you fill out every field! (exception can be the 3d height of the pie, but I tried to word the panel in a way that it makes it obvious). 
+![image](https://github.com/crocussara/AE_Pie_chart/assets/120991342/14d99121-63dc-4263-ab2b-e90330a3c18c)
 
 
 
