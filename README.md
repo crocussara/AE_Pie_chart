@@ -69,11 +69,7 @@ Second, you have got 4 different null layers:
 
   Add and subtract buttons to add slices instead of a number input? Maybe? not totally convinced?
 
-  [^1]: If you haven't used scripts before this can be
-  * File > Scripts > Run script file..
-  * File > Scripts > Install script file..
-  * File > Scripts > Install ScriptUI panel..
-Whichever suits you! If you just run the script, then you have to store it in a location you can find it later if needed. In case of installing them, you will always be able to access it from either your scripts menu (if you installed as a script file) or from the windows menu (if you installed as a scriptUI file). Be aware, that if you installed it, you might have to restart your AE in order to show up!!
+  [^1]: If you haven't used scripts before this can be  * File > Scripts > Run script file..  * File > Scripts > Install script file..  * File > Scripts > Install ScriptUI panel.. Whichever suits you! If you just run the script, then you have to store it in a location you can find it later if needed. In case of installing them, you will always be able to access it from either your scripts menu (if you installed as a script file) or from the windows menu (if you installed as a scriptUI file). Be aware, that if you installed it, you might have to restart your AE in order to show up!!
 
 
   Hmmm what else is  there to be talked about?
