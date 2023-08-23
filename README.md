@@ -26,10 +26,10 @@ Now the script has run, and you are left with a bunch of layers. What are these?
 First of all, be so kind and make sure to have the layers names displayed on the timeline panel instead of the source names!
 * You now have two different type of layers created in your comp. The green labelled ones, the shape layers, containing a slice each, locked, you probably don't have to do anything with those (opacity, individual movement can be done).
 * Second, you have got 4 different null layers:
- * "your specific name" - CNTRL - position & rotation
- * "your specific name" - CNTRL - size (& extrusion if you made a 3d pie)
- * "your specific name" - CNTRL - color
- * "your specific name" - CNTRL - slices
+  * "your specific name" - CNTRL - position & rotation
+  * "your specific name" - CNTRL - size (& extrusion if you made a 3d pie)
+  * "your specific name" - CNTRL - color
+  * "your specific name" - CNTRL - slices
 
  These null layers have different functions, and can provide you with a much niceer experience when it comes to animation than if you would have to do everything on each layer manually.
 
