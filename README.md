@@ -3,7 +3,7 @@
 
 > [!IMPORTANT]
 > Use the visual guide if you're just want to use the script.
-> [Visual user guide here!](GUIDE.md)
+> [Visual user guide here!](https://github.com/crocussara/AE_Pie_chart/blob/main/GUIDE.md)
 
 ## More technical stuff. Maybe? If not then just more verbousus explanations
 
